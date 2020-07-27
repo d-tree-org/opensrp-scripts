@@ -4,14 +4,12 @@
 -- Query to get chw details from OpenMRS
 --
 
-select team_member.uuid as chw_id, team_member.identifier as chw_username, given_name, middle_name, family_name, birthdate, gender, team.name as team, team.uuid as team_id, team_role.name as team_role, location.name as team_location, location.uuid as team_location_id, loc.name as user_location, loc.uuid as user_location_id
+select team_member.uuid as chw_id, team_member.identifier as chw_username, given_name, middle_name, family_name, birthdate, gender, team.name as team, team.uuid as team_id, team_role.name as team_role, location.name as assigned_location, location.uuid as location_id
 from team_member inner join person on team_member.person_id = person.person_id
 inner join person_name on person_name.person_id = person.person_id
 inner join team on team.team_id = team_member.team_id
 inner join team_role on team_role.team_role_id = team_member.team_role_id
-inner join location on team.location_id = location.location_id
-inner join team_member_location on team_member.team_member_id = team_member_location.team_member_id
-inner join location loc on team_member_location.location_id = loc.location_id;
+inner join location on team.location_id = location.location_id;
 
 
 --
